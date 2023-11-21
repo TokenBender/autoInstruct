@@ -57,8 +57,8 @@ if args.split_ratio:
     validation_data = transformed_data[int(len(transformed_data) * args.split_ratio):]
     
     output_file_name = args.output_filename.split('.')[0]
-    training_file_name = output_file_name + '_training.jsonl'
-    validation_file_name = output_file_name + '_validation.jsonl'
+    training_file_name = output_file_name + '_train.jsonl'
+    validation_file_name = output_file_name + '_test.jsonl'
 
     with open(training_file_name, 'w') as training_file:
         for data in training_data:
