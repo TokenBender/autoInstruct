@@ -2,16 +2,7 @@ import argparse
 import pandas as pd
 import sys
 
-def convert_parquet_to_jsonl(parquet_file, jsonl_file):
-    try:
-        df = pd.read_parquet(parquet_file)
-        df.to_json(jsonl_file, orient='records', lines=True)
-        return 0
-    except Exception as e:
-        print(f"Error converting Parquet to JSONL: {e}")
-        return 1
-
-def convert_json_to_parquet(json_file, parquet_file):
+def convert_jsonl_to_parquet(json_file, parquet_file):
     try:
         df = pd.read_json(json_file, lines=True)
         df.to_parquet(parquet_file)
@@ -44,7 +35,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.to_parquet:
-        sys.exit(convert_json_to_parquet(args.input_file, args.output_file))
+        sys.exit(convert_jsonl_to_parquet(args.input_file, args.output_file))
     elif args.to_jsonl:
         sys.exit(convert_parquet_to_jsonl(args.input_file, args.output_file))
     else:
